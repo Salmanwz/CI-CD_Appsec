@@ -20,7 +20,7 @@ jobs:
       run: pip install semgrep
 
     - name: Run Semgrep 
-      run: semgrep scan --config=auto --json --output=semgrep-result.json
+      run: semgrep scan --config=auto --json --output=semgrep-results.json
 
     - name: Save Results
       uses: actions/upload-artifact@v4
