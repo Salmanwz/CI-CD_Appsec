@@ -20,7 +20,7 @@ jobs:
       run: pip install semgrep
 
     - name: Login/Config Semgrep 
-      run: $secrets.SEMGREP_APP_TOKEN semgrep login
+      run: semgrep scan
 
     - name: Run Semgrep
       run: semgrep ci
