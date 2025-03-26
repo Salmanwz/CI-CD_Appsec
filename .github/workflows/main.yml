@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup python
       uses: actions/setup-python@v5.5.0
@@ -19,15 +19,26 @@ jobs:
     - name: Install Semgrep  
       run: pip install semgrep
 
+    - name: semgrep/ci
+      permissions:
+      contents: read
+      env:
+        SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      # container:
+      #   image: semgrep/semgrep
+      # if: (github.actor != 'dependabot[bot]')
+      steps:
+        - run: semgrep ci --json --output=semgrep-ci-results.json
+
     # - name: Login Semgrep
     #   run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
 
-    - name: Authenticate with Semgrep via Environment Variable
-      run: export SEMGREP_APP_TOKEN="${{ secrets.SEMGREP_API_TOKEN }}"
+    # - name: Authenticate with Semgrep via Environment Variable
+    #   run: export SEMGREP_APP_TOKEN="${{ secrets.SEMGREP_API_TOKEN }}"
     
-    - name: Run Semgrep 
-      run: semgrep ci --json --output=semgrep-ci-results.json
-      # run: semgrep scan --config=auto --json --output=semgrep-results.json
+    # - name: Run Semgrep 
+    #   run: semgrep ci --json --output=semgrep-ci-results.json
+    #   # run: semgrep scan --config=auto --json --output=semgrep-results.json
 
     - name: Save Results
       uses: actions/upload-artifact@v4
@@ -35,3 +46,4 @@ jobs:
         name: semgrep-ci-results
         path: semgrep-ci-results.json
         retention-days: 7
+
