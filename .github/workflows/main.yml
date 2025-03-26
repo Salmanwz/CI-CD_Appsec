@@ -19,8 +19,8 @@ jobs:
     - name: Install Semgrep  
       run: pip install semgrep
 
-    - name: Login Semgrep
-      run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
+    # - name: Login Semgrep
+    #   run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
     
     - name: Run Semgrep 
       run: semgrep ci --json --output=semgrep-ci-results.json
