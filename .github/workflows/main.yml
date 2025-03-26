@@ -19,8 +19,12 @@ jobs:
     - name: Install Semgrep  
       run: pip install semgrep
 
-    - name: Login/Config Semgrep 
-      run: semgrep scan
+    - name: Run Semgrep 
+      run: semgrep scan --config=auto --json --output=semgrep-result.json
 
-    - name: Run Semgrep
-      run: semgrep ci
+    - name: Save Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: semgrep-results
+        path: semgrep-results.json
+        retention-days: 7
