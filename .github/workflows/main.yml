@@ -21,6 +21,9 @@ jobs:
 
     # - name: Login Semgrep
     #   run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
+
+    - name: Authenticate with Semgrep via Environment Variable
+      run: export SEMGREP_APP_TOKEN="${{ secrets.SEMGREP_API_TOKEN }}"
     
     - name: Run Semgrep 
       run: semgrep ci --json --output=semgrep-ci-results.json
