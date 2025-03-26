@@ -28,7 +28,7 @@ jobs:
       #   image: semgrep/semgrep
       # if: (github.actor != 'dependabot[bot]')
       steps:
-        - run: semgrep ci --json --output=semgrep-ci-results.json
+        run: semgrep ci --json --output=semgrep-ci-results.json
 
     # - name: Login Semgrep
     #   run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
