@@ -30,4 +30,4 @@ jobs:
 
   trigger-docker-workflow:
     needs: build
-    uses: ./.github/workflows/docker.yml  # Calls the Docker build workflow
+    uses: ./.github/workflows/build.yml  # Calls the Docker build workflow
