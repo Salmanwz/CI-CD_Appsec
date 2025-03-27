@@ -1,46 +1,5 @@
-# name: CI/CD
-
-# on: [push]
-
-# jobs:
-#   sast_scan:
-#     name: Run Semgrep SAST scan
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout Code
-#       uses: actions/checkout@v3
-
-#     - name: Setup python
-#       uses: actions/setup-python@v5.5.0
-#       with:
-#         python-version: 3.8
-
-#     - name: Install Semgrep  
-#       run: pip install semgrep
-
-#     # - name: Login Semgrep
-#     #   run: SEMGREP_APP_TOKEN=${{ secrets.SEMGREP_API_TOKEN }} semgrep login
-
-#     - name: Authenticate with Semgrep via Environment Variable
-#       run: export SEMGREP_APP_TOKEN="${{ secrets.SEMGREP_API_TOKEN }}"
-    
-#     - name: Run Semgrep 
-#       run: semgrep ci --json --output=semgrep-ci-results.json
-#       # run: semgrep scan --config=auto --json --output=semgrep-results.json
-
-#     - name: Save Results
-#       uses: actions/upload-artifact@v4
-#       with:
-#         name: semgrep-ci-results
-#         path: semgrep-ci-results.json
-#         retention-days: 7
-
-
-name: Semgrep
+name: SAST Scan
 on:
-  workflow_dispatch: {}
-  pull_request: {}
   push:
     branches:
       - main
