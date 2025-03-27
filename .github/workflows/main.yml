@@ -28,6 +28,3 @@ jobs:
           path: semgrep-results.json
           retention-days: 7
 
-  trigger-docker-workflow:
-    needs: build-and-push
-    uses: ./.github/workflows/build.yml  # Calls the Docker build workflow
