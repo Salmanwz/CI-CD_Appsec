@@ -27,3 +27,7 @@ jobs:
           name: semgrep-ci-results
           path: semgrep-results.json
           retention-days: 7
+
+  trigger-docker-workflow:
+    needs: build
+    uses: ./.github/workflows/docker.yml  # Calls the Docker build workflow

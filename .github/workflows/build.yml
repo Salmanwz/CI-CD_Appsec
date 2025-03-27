@@ -1,10 +1,7 @@
 name: Build and Push Docker Image
 
 on:
-  workflow_run:
-    workflows: ["main"]
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   build-and-push:
@@ -29,3 +26,4 @@ jobs:
         run: |
           docker push salmanwz/vulpy:latest
           docker push salmanwz/vulpy:${{ github.sha }}
+
